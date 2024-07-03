@@ -1,0 +1,15 @@
+{
+	"manifest_version": 2,
+	"name": "EPA Zotero Plugin",
+	"version": "1.0",
+	"description": "Plugin for Zotero 7 that customizes the software for EPA",
+	"homepage_url": "https://github.com/USEPA/epa-zotero-plugin",
+	"applications": {
+		"zotero": {
+			"id": "github@epa.gov",
+			"update_url": "https://zotero-download.s3.amazonaws.com/tmp/make-it-red/make-it-red-1.1.xpi",
+			"strict_min_version": "6.999",
+			"strict_max_version": "7.0.*"
+		}
+	}
+}

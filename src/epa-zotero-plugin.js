@@ -1,4 +1,4 @@
-MakeItRed = {
+EpaZoteroPlugin = {
 	id: null,
 	version: null,
 	rootURI: null,
@@ -14,7 +14,7 @@ MakeItRed = {
 	},
 	
 	log(msg) {
-		Zotero.debug("Make It Red: " + msg);
+		Zotero.debug("EPA Zotero Plugin: " + msg);
 	},
 	
 	addToWindow(window) {
@@ -22,7 +22,7 @@ MakeItRed = {
 		
 		// Add a stylesheet to the main Zotero pane
 		let link1 = doc.createElement('link');
-		link1.id = 'make-it-red-stylesheet';
+		link1.id = 'epa-zotero-plugin-stylesheet';
 		link1.type = 'text/css';
 		link1.rel = 'stylesheet';
 		link1.href = this.rootURI + 'style.css';
@@ -30,19 +30,16 @@ MakeItRed = {
 		this.storeAddedElement(link1);
 		
 		// Use Fluent for localization
-		window.MozXULElement.insertFTLIfNeeded("make-it-red.ftl");
+		window.MozXULElement.insertFTLIfNeeded("epa-zotero-plugin.ftl");
 		
 		// Add menu option
-		let menuitem = doc.createXULElement('menuitem');
-		menuitem.id = 'make-it-green-instead';
-		menuitem.setAttribute('type', 'checkbox');
-		menuitem.setAttribute('data-l10n-id', 'make-it-red-green-instead');
-		// MozMenuItem#checked is available in Zotero 7
-		menuitem.addEventListener('command', () => {
-			MakeItRed.toggleGreen(window, menuitem.checked);
-		});
-		doc.getElementById('menu_viewPopup').appendChild(menuitem);
-		this.storeAddedElement(menuitem);
+		// let menuitem = doc.createXULElement('menuitem');
+		// menuitem.id = 'make-it-green-instead';
+		// menuitem.setAttribute('type', 'checkbox');
+		// menuitem.setAttribute('data-l10n-id', 'make-it-red-green-instead');
+		// // MozMenuItem#checked is available in Zotero 7
+		// doc.getElementById('menu_viewPopup').appendChild(menuitem);
+		// this.storeAddedElement(menuitem);
 	},
 	
 	addToAllWindows() {
@@ -66,7 +63,7 @@ MakeItRed = {
 		for (let id of this.addedElementIDs) {
 			doc.getElementById(id)?.remove();
 		}
-		doc.querySelector('[href="make-it-red.ftl"]').remove();
+		doc.querySelector('[href="epa-zotero-plugin.ftl"]').remove();
 	},
 	
 	removeFromAllWindows() {
@@ -77,17 +74,7 @@ MakeItRed = {
 		}
 	},
 	
-	toggleGreen(window, enabled) {
-		window.document.documentElement
-			.toggleAttribute('data-green-instead', enabled);
-	},
-	
 	async main() {
-		// Global properties are included automatically in Zotero 7
-		var host = new URL('https://foo.com/path').host;
-		this.log(`Host is ${host}`);
 		
-		// Retrieve a global pref
-		this.log(`Intensity is ${Zotero.Prefs.get('extensions.make-it-red.intensity', true)}`);
 	},
 };
