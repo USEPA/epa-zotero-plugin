@@ -1,4 +1,4 @@
-EpaZoteroPlugin = {
+var EpaZoteroPlugin = {
 	id: null,
 	version: null,
 	rootURI: null,
@@ -56,7 +56,7 @@ EpaZoteroPlugin = {
 		}
 		this.addedElementIDs.push(elem.id);
 	},
-	
+
 	removeFromWindow(window) {
 		var doc = window.document;
 		// Remove all elements added to DOM
@@ -73,8 +73,40 @@ EpaZoteroPlugin = {
 			this.removeFromWindow(win);
 		}
 	},
-	
+
+	setupPrefsWindowWatcher() {
+		Services.wm.addListener({onOpenWindow: this.patchPrefsWindow});
+	},
+
+	shutdownPrefsWindowWatcher() {
+		Services.wm.removeListener({onOpenWindow: this.patchPrefsWindow});
+	},
+
+	patchPrefsWindow(window) {
+		// The timeout needs to be changed to use promises or mutation observer
+		let domWindow = window.docShell.domWindow;
+		async function onload() {
+			domWindow.removeEventListener("load", onload, false);
+			if (
+				domWindow.location.href
+				!== "chrome://zotero/content/preferences/preferences.xhtml"
+			) {
+				return;
+			}
+			setTimeout(function() {
+			var syncPrefPane = domWindow.document.getElementById("zotero-prefpane-sync").parentElement;
+			var textElement = domWindow.document.createElement('html:div');
+			textElement.textContent = "Zotero cloud sync has been disabled for EPA";
+			syncPrefPane.appendChild(textElement);
+		}, 2000)
+		}
+		domWindow.addEventListener("load", onload, false);
+	},
+
+	addEpaText(win) {
+
+	},
+
 	async main() {
-		
 	},
 };
