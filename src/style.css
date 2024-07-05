@@ -5,3 +5,17 @@
 window[data-green-instead] .row {
 
 }
+
+#zotero-tb-sync {
+	display: none;
+}
+
+#zotero-prefpane-sync .main-section {
+	display: none !important;
+}
+
+
+#sync-unauthorized {
+	display: none !important;
+	height: 0px;
+}
