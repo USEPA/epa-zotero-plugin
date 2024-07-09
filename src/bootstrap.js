@@ -7,17 +7,17 @@ function log(msg) {
 function install() {}
 
 async function startup({ id, version, rootURI }) {
-	Zotero.PreferencePanes.register({
-		pluginID: 'github@epa.gov',
-		src: rootURI + 'preferences.xhtml',
-		scripts: [rootURI + 'preferences.js']
-	});
+	// Zotero.PreferencePanes.register({
+	// 	pluginID: 'github@epa.gov',
+	// 	src: rootURI + 'preferences.xhtml',
+	// 	scripts: [rootURI + 'preferences.js']
+	// });
 	
 	Services.scriptloader.loadSubScript(rootURI + 'epa-zotero-plugin.js');
 	EpaZoteroPlugin.init({ id, version, rootURI });
 	EpaZoteroPlugin.addToAllWindows();
 	EpaZoteroPlugin.setupPrefsWindowWatcher();
-	await EpaZoteroPlugin.main();
+	//await EpaZoteroPlugin.main();
 }
 
 function onMainWindowLoad({ window }) {
@@ -31,6 +31,7 @@ function onMainWindowUnload({ window }) {
 function shutdown() {
 	EpaZoteroPlugin.removeFromAllWindows();
 	EpaZoteroPlugin.shutdownPrefsWindowWatcher();
+	EpaZoteroPlugin.initialized = false;
 	EpaZoteroPlugin = undefined;
 }
 

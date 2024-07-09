@@ -5,6 +5,11 @@ var EpaZoteroPlugin = {
     initialized: false,
     prefWindowListener: null,
     addedElementIDs: [],
+    oldConfig: {
+        API_URL: "", // https://
+        STREAMING_URL: "", // wss://
+        PROXY_AUTH_URL: "", //"https://  .s3.amazonaws.com/test'"
+    },
 
     init({
         id,
@@ -33,6 +38,7 @@ var EpaZoteroPlugin = {
         link1.href = this.rootURI + 'style.css';
         doc.documentElement.appendChild(link1);
         this.storeAddedElement(link1);
+        this.patchConfig(window.ZOTERO_CONFIG);
 
         // Use Fluent for localization
         window.MozXULElement.insertFTLIfNeeded("epa-zotero-plugin.ftl");
@@ -64,6 +70,7 @@ var EpaZoteroPlugin = {
 
     removeFromWindow(window) {
         var doc = window.document;
+        this.unPatchConfig(window.ZOTERO_CONFIG);
         // Remove all elements added to DOM
         for (let id of this.addedElementIDs) {
             doc.getElementById(id)?.remove();
@@ -92,10 +99,10 @@ var EpaZoteroPlugin = {
         Services.wm.removeListener({
             onOpenWindow: this.prefWindowListener
         });
+        this.prefWindowListener = null;
     },
 
     makePatchPrefsWindow(_this) { return (window) => {
-        // The timeout needs to be changed to use promises or mutation observern
         let domWindow = window.docShell.domWindow;
         Zotero.debug(domWindow);
         async function onload() {
@@ -104,6 +111,9 @@ var EpaZoteroPlugin = {
                 domWindow.location.href !==
                 "chrome://zotero/content/preferences/preferences.xhtml"
             ) {
+                return;
+            }
+            if(!_this.initialized) {
                 return;
             }
 
@@ -142,8 +152,21 @@ var EpaZoteroPlugin = {
         domWindow.addEventListener("load", onload, false);
     }},
 
-    addEpaText(win) {
-
+    patchConfig(ZOTERO_CONFIG) {
+        for (const key of Object.keys(this.oldConfig)) {
+            if(!this.oldConfig[key]) {
+                this.oldConfig[key] = ZOTERO_CONFIG[key];
+            }
+            ZOTERO_CONFIG[key] = "";
+            Zotero.Prefs.set(key, "", null);
+        }
+    },
+    
+    unPatchConfig(ZOTERO_CONFIG) {
+        for (const [key, value] of Object.entries(this.oldConfig)) {
+            Zotero.Prefs.set(key, value, null);
+            ZOTERO_CONFIG[key] = value;
+        }
     },
 
     async main() {},
