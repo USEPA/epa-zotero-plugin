@@ -4,7 +4,8 @@
   "description": "A sample plugin for Zotero 7",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "bash -c ' eslint ./src/*.js && C:\\Users\\comp1\\Desktop\\Zotero_win-x64\\zotero.exe -ZoteroDebugText -jsconsole -purgecaches '",
+    "killrun": "bash -c 'taskkill //IM \"Zotero.exe\" //F; eslint ./src/*.js && C:\\Users\\comp1\\Desktop\\Zotero_win-x64\\zotero.exe -ZoteroDebugText -jsconsole -purgecaches '"
   },
   "author": "",
   "license": "ISC",
