@@ -1,12 +1,14 @@
-# Make It Red
+# EPA Zotero Plugin
 
-A sample plugin for Zotero 7
+Supports Zotero 7 only.
 
-  * [src-1.0](src-1.0): Overlay plugin for Zotero 6
-  * [src-1.1](src-1.1): Overlay plugin for Zotero 6 and bootstrapped plugin for Zotero 7
-  * [src-1.2](src-1.2): Bootstrapped plugin for Zotero 6 and 7
-  * [src-2.0](src-2.0): Bootstrapped plugin for Zotero 7
+Currently what this plugin does is disable the build-in Cloud Sync features from Zotero. This is to allow the software to be used at EPA.
 
-To test, run `./make-zips` and install the XPIs in the Zotero Add-ons window, or see [Setting Up a Plugin Development Environment](https://www.zotero.org/support/dev/client_coding/plugin_development#setting_up_a_plugin_development_environment) to run from source.
+## Build
+To build, run `./make-zips` and install the XPI from ./build in the Zotero Add-ons window. 
 
-The update manifests are set up to demonstrate upgrading across all versions, but normally a plugin would point to a single update manifest that was updated as new versions were available. The update manifests for versions 1.1 and 1.2 are set up to allow upgrading directly to 2.0 from Zotero 7.
+## Developing
+See [Setting Up a Plugin Development Environment](https://www.zotero.org/support/dev/client_coding/plugin_development#setting_up_a_plugin_development_environment) to run from source.
+
+## Releasing
+Uploading a new tag to this repository kicks off a GitHub action which builds and creates a new release. Zotero clients will automatically check for this an update from this GitHub repository. Definitely check your plugin thoroughly before as if clients update to a broken plugin they might not be able to automatically update to a working on.
