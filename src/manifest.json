@@ -1,15 +1,15 @@
 {
-	"manifest_version": 2,
-	"name": "EPA Zotero Plugin",
-	"version": "1.0",
-	"description": "Plugin for Zotero 7 that customizes the software for EPA",
-	"homepage_url": "https://github.com/USEPA/epa-zotero-plugin",
-	"applications": {
-		"zotero": {
-			"id": "epa-zotero-plugin@epa.gov",
-			"update_url": "https://github.com/andychase/epa-zotero-plugin/releases/latest/download/updates.json",
-			"strict_min_version": "6.999",
-			"strict_max_version": "7.0.*"
-		}
-	}
+  "manifest_version": 2,
+  "name": "EPA Zotero Plugin",
+  "version": "0.0",
+  "description": "Plugin for Zotero 7 that customizes the software for EPA",
+  "homepage_url": "https://github.com/USEPA/epa-zotero-plugin",
+  "applications": {
+    "zotero": {
+      "id": "epa-zotero-plugin@epa.gov",
+      "update_url": "https://github.com/andychase/epa-zotero-plugin/releases/latest/download/updates.json",
+      "strict_min_version": "6.999",
+      "strict_max_version": "7.0.*"
+    }
+  }
 }
