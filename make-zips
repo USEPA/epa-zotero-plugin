@@ -16,7 +16,8 @@ else
 fi
 cd ../build
 
-# Calculate the SHA256 hash and update the JSON template
 XPI_HASH=$(shasum -a 256 "$XPI_FILENAME" | cut -d' ' -f1)
-jq ".addons[\"epa-zotero-plugin@epa.gov\"].updates[0].update_hash = \"sha256:$XPI_HASH\"" \
+GIT_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0")
+
+jq ".addons[\"epa-zotero-plugin@epa.gov\"].updates[0] |= (.update_hash = \"sha256:$XPI_HASH\" | .version = \"$GIT_TAG\")" \
     "../$TMPL_FILENAME" > $UPDATES_FILENAME
