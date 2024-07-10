@@ -1,0 +1,18 @@
+!include "FileFunc.nsh"
+!insertmacro GetParameters
+!insertmacro GetOptions
+
+Name "EPA Zotero Installer"
+Outfile "EPA_Zotero_Installer.exe"
+RequestExecutionLevel admin
+
+Section "MainSection" SEC01
+  SetOutPath "$TEMP"
+  inetc::get "https://www.zotero.org/download/client/dl?platform=win-x64&channel=beta" "$TEMP\Zotero-Setup.exe"
+
+  ExecWait '"$TEMP\Zotero-Setup.exe" /s'
+
+  CreateDirectory "$PROGRAMFILES64\Zotero\distribution\extensions"
+  inetc::get "https://github.com/andychase/epa-zotero-plugin/releases/download/latest/epa-zotero-plugin@epa.gov.xpi" "$PROGRAMFILES64\Zotero\distribution\extensions\epa-zotero-plugin@epa.gov.xpi"
+
+SectionEnd
