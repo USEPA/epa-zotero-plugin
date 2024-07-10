@@ -7,7 +7,7 @@
   "applications": {
     "zotero": {
       "id": "epa-zotero-plugin@epa.gov",
-      "update_url": "https://github.com/andychase/epa-zotero-plugin/releases/latest/download/updates.json",
+      "update_url": "https://github.com/USEPA/epa-zotero-plugin/releases/latest/download/updates.json",
       "strict_min_version": "6.999",
       "strict_max_version": "7.0.*"
     }
