@@ -5,6 +5,7 @@ var EpaZoteroPlugin = {
     initialized: false,
     prefWindowListener: null,
     addedElementIDs: [],
+    oldSyncReminderSetting: null,
     oldConfig: {
         API_URL: "", // https://
         STREAMING_URL: "", // wss://
@@ -153,6 +154,10 @@ var EpaZoteroPlugin = {
     }},
 
     patchConfig(ZOTERO_CONFIG) {
+        if (this.oldSyncReminderSetting === null) {
+            this.oldSyncReminderSetting = Zotero.Prefs.get('sync.reminder.setUp.enabled');
+        }
+        Zotero.Prefs.set('sync.reminder.setUp.enabled', false);
         for (const key of Object.keys(this.oldConfig)) {
             if(!this.oldConfig[key]) {
                 this.oldConfig[key] = ZOTERO_CONFIG[key];
@@ -163,6 +168,10 @@ var EpaZoteroPlugin = {
     },
     
     unPatchConfig(ZOTERO_CONFIG) {
+        if (this.oldSyncReminderSetting === null) {
+            this.oldSyncReminderSetting = true;
+        }
+        Zotero.Prefs.set('sync.reminder.setUp.enabled', this.oldSyncReminderSetting);
         for (const [key, value] of Object.entries(this.oldConfig)) {
             Zotero.Prefs.set(key, value, null);
             ZOTERO_CONFIG[key] = value;
