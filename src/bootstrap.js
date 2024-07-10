@@ -8,7 +8,7 @@ function install() {}
 
 async function startup({ id, version, rootURI }) {
 	// Zotero.PreferencePanes.register({
-	// 	pluginID: 'github@epa.gov',
+	// 	pluginID: 'epa-zotero-plugin@epa.gov',
 	// 	src: rootURI + 'preferences.xhtml',
 	// 	scripts: [rootURI + 'preferences.js']
 	// });

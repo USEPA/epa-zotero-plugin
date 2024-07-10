@@ -6,7 +6,7 @@
 	"homepage_url": "https://github.com/USEPA/epa-zotero-plugin",
 	"applications": {
 		"zotero": {
-			"id": "github@epa.gov",
+			"id": "epa-zotero-plugin@epa.gov",
 			"update_url": "https://zotero-download.s3.amazonaws.com/tmp/make-it-red/make-it-red-1.1.xpi",
 			"strict_min_version": "6.999",
 			"strict_max_version": "7.0.*"
