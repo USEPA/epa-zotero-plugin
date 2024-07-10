@@ -31,7 +31,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/epa-zotero-plugin-1.0.xpi
-          asset_name: epa-zotero-plugin-1.0.xpi
-          asset_content_type: application/zip
+          files: |
+            ./build/epa-zotero-plugin@epa.gov.xpi
+            ./build/updates.json
+
