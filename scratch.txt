@@ -1,0 +1,2 @@
+// If we need to end up changing the update channel here is how we can do it
+Zotero.Prefs.rootBranch.setStringPref('app.update.channel', 'release')
