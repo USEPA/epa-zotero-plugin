@@ -13,6 +13,6 @@ Section "MainSection" SEC01
   ExecWait '"$TEMP\Zotero-Setup.exe" /s'
 
   CreateDirectory "$PROGRAMFILES64\Zotero\distribution\extensions"
-  inetc::get "https://github.com/USEPA/epa-zotero-plugin/releases/download/latest/epa-zotero-plugin@epa.gov.xpi" "$PROGRAMFILES64\Zotero\distribution\extensions\epa-zotero-plugin@epa.gov.xpi"
+  inetc::get "https://github.com/USEPA/epa-zotero-plugin/releases/latest/download/epa-zotero-plugin@epa.gov.xpi" "$PROGRAMFILES64\Zotero\distribution\extensions\epa-zotero-plugin@epa.gov.xpi"
 
 SectionEnd
