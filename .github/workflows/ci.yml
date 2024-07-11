@@ -34,4 +34,4 @@ jobs:
           files: |
             ./build/epa-zotero-plugin@epa.gov.xpi
             ./build/updates.json
-
+            ./win-install/EPA_Zotero_Installer.exe
