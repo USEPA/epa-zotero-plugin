@@ -19,3 +19,12 @@ window[data-green-instead] .row {
 	display: none !important;
 	height: 0px;
 }
+
+#zotero-items-pane #zotero-items-tree .items-tree-message div p:nth-of-type(2) {
+    display: none;
+}
+
+
+#zotero-items-pane #zotero-items-tree .items-tree-message div p:nth-of-type(3) {
+    display: none;
+}
