@@ -71,7 +71,7 @@ var EpaZoteroPlugin = {
 
     removeFromWindow(window) {
         var doc = window.document;
-        this.unPatchConfig(window.ZOTERO_CONFIG);
+        //this.unPatchConfig(window.ZOTERO_CONFIG);
         // Remove all elements added to DOM
         for (let id of this.addedElementIDs) {
             doc.getElementById(id)?.remove();
@@ -167,16 +167,16 @@ var EpaZoteroPlugin = {
         }
     },
     
-    unPatchConfig(ZOTERO_CONFIG) {
-        if (this.oldSyncReminderSetting === null) {
-            this.oldSyncReminderSetting = true;
-        }
-        Zotero.Prefs.set('sync.reminder.setUp.enabled', this.oldSyncReminderSetting);
-        for (const [key, value] of Object.entries(this.oldConfig)) {
-            Zotero.Prefs.set(key, value, null);
-            ZOTERO_CONFIG[key] = value;
-        }
-    },
+    // unPatchConfig(ZOTERO_CONFIG) {
+    //     if (this.oldSyncReminderSetting === null) {
+    //         this.oldSyncReminderSetting = true;
+    //     }
+    //     Zotero.Prefs.set('sync.reminder.setUp.enabled', this.oldSyncReminderSetting);
+    //     for (const [key, value] of Object.entries(this.oldConfig)) {
+    //         Zotero.Prefs.set(key, value, null);
+    //         ZOTERO_CONFIG[key] = value;
+    //     }
+    // },
 
     async main() {},
 };
