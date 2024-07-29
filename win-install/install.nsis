@@ -1,4 +1,5 @@
 !include "FileFunc.nsh"
+!include x64.nsh
 !insertmacro GetParameters
 !insertmacro GetOptions
 
@@ -7,11 +8,16 @@ Outfile "EPA_Zotero_Installer.exe"
 RequestExecutionLevel admin
 
 Section "MainSection" SEC01
+  ; Delete the existing Zotero preferences and user data
+  RMDir /r "$APPDATA\Zotero"
+
+  ; Download and install Zotero Beta
   SetOutPath "$TEMP"
   inetc::get "https://www.zotero.org/download/client/dl?platform=win-x64&channel=beta" "$TEMP\Zotero-Setup.exe"
 
   ExecWait '"$TEMP\Zotero-Setup.exe" /s'
 
+  ; Download the Zotero EPA plugin into a folder which will automatically install it
   CreateDirectory "$PROGRAMFILES64\Zotero\distribution\extensions"
   inetc::get "https://github.com/USEPA/epa-zotero-plugin/releases/latest/download/epa-zotero-plugin@epa.gov.xpi" "$PROGRAMFILES64\Zotero\distribution\extensions\epa-zotero-plugin@epa.gov.xpi"
 
