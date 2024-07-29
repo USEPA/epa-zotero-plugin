@@ -10,6 +10,7 @@ var EpaZoteroPlugin = {
         API_URL: "", // https://
         STREAMING_URL: "", // wss://
         PROXY_AUTH_URL: "", //"https://  .s3.amazonaws.com/test'"
+        START_URL: "",
     },
 
     init({
@@ -56,6 +57,7 @@ var EpaZoteroPlugin = {
 
     addToAllWindows() {
         var windows = Zotero.getMainWindows();
+        
         for (let win of windows) {
             if (!win.ZoteroPane) continue;
             this.addToWindow(win);
