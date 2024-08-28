@@ -13,7 +13,7 @@ Section "MainSection" SEC01
 
   ; Download and install Zotero Beta
   SetOutPath "$TEMP"
-  inetc::get "https://www.zotero.org/download/client/dl?platform=win-x64&channel=beta" "$TEMP\Zotero-Setup.exe"
+  inetc::get "https://www.zotero.org/download/client/dl?channel=release&platform=win-x64" "$TEMP\Zotero-Setup.exe"
 
   ExecWait '"$TEMP\Zotero-Setup.exe" /s'
 
