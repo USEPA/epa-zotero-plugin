@@ -28,3 +28,7 @@ window[data-green-instead] .row {
 #zotero-items-pane #zotero-items-tree .items-tree-message div p:nth-of-type(3) {
     display: none;
 }
+
+#zotero-items-pane #zotero-items-tree .items-tree-message div.publications {
+    display: none;
+}
