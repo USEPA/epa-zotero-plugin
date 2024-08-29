@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "EPA Zotero Plugin",
-  "version": "0.3",
+  "version": "0.0 -- Version number auto updates on build / when using make-zips",
   "description": "Plugin for Zotero 7 that customizes the software for EPA",
   "homepage_url": "https://github.com/USEPA/epa-zotero-plugin",
   "applications": {
