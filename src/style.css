@@ -36,3 +36,12 @@ window[data-green-instead] .row {
 menuitem#menuitem-restart-in-troubleshooting-mode {
 	display: none;
 }
+
+menuitem#installConnector {
+	display: none;
+}
+
+
+menuitem#menu_addons {
+	display: none;
+}
